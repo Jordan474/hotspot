@@ -109,6 +109,7 @@ void SourceCodeModel::setDisassembly(const DisassemblyOutput& disassemblyOutput,
 
     QFile file(disassemblyOutput.realSourceFileName);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qCWarning(sourcecodemodel) << "failed to open source file: " << disassemblyOutput.realSourceFileName;
         return;
     }
 
