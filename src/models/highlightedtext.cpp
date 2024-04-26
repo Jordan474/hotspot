@@ -329,12 +329,15 @@ void HighlightedText::setDefinition(const KSyntaxHighlighting::Definition& defin
 
 QString HighlightedText::textAt(int index) const
 {
-    Q_ASSERT(m_highlighter);
+    if (index > m_cleanedLines.size())
+        return {};
     return m_cleanedLines.at(index);
 }
 
 QTextLine HighlightedText::lineAt(int index) const
 {
+    if (index > m_highlightedLines.size())
+        return {};
     auto& line = m_highlightedLines[index];
     return line.layout()->lineAt(0);
 }
@@ -348,6 +351,8 @@ QString HighlightedText::definition() const
 
 QTextLayout* HighlightedText::layoutForLine(int index)
 {
+    if (index > m_highlightedLines.size())
+        return nullptr;
     return m_highlightedLines[index].layout();
 }
 
