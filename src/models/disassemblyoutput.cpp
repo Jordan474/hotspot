@@ -337,6 +337,7 @@ DisassemblyOutput DisassemblyOutput::disassemble(const QString& objdump, const Q
     auto arguments = QStringList {QStringLiteral("-d"), // disassemble
                                   QStringLiteral("-l"), // include source code lines
                                   QStringLiteral("-C"), // demangle names
+                                  QStringLiteral("-Mintel"), // intel style mnemonics
                                   QStringLiteral("--start-address"),
                                   toHex(symbol.relAddr),
                                   QStringLiteral("--stop-address"),
